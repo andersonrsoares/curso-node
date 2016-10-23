@@ -6,14 +6,17 @@ informar dados
 importante!
 entry point: arquivo de entrada 
 
-nodemon 
-ferramenta para recarregar os arquivos editados no servidor nodejs 
-npm install -g nodemon 
-execute nodemon arquivo.js para iniciar o servidor 
+
+nodemon<br/> 
+ferramenta para recarregar os arquivos editados no servidor nodejs<br/>  
+npm install -g nodemon <br/> 
+execute nodemon arquivo.js para iniciar o servidor <br/> 
+
 
 baixar aquitvos de dependencia 
 npm install
 npm start
+
 
 pacotes
 comando --save serve para colocar os aquitvos na pasta do projeto 
