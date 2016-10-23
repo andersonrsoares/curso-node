@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/andersonrsoares/curso-node/issues"
   },
-  "homepage": "https://github.com/andersonrsoares/curso-node#readme"
+  "homepage": "https://github.com/andersonrsoares/curso-node#readme",
+  "dependencies": {
+    "ejs": "^2.5.2",
+    "express": "^4.14.0"
+  }
 }
