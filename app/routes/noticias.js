@@ -1,10 +1,11 @@
 //var dbConnection = require('../../config/dbConnection');
 
-module.exports = function(app){
-    app.get('/noticias',function(req,res){
-         var connection = app.config.dbConnection();  
-        //2 paametros sql e callback do retrono
-        connection.query("select * from noticias",function(error,result){
+module.exports = function(application){
+    application.get('/noticias',function(req,res){
+         var connection = application.config.dbConnection();  
+         var noticiasModel = application.app.models.noticiasModel;
+        
+         noticiasModel.getNoticias(connection,function(error,result){
             console.log(error);
             res.render("noticias/noticias",{noticias:result});
         });
@@ -12,7 +13,14 @@ module.exports = function(app){
     });
 };
 
- /*var mysql = require('mysql');
+ /*
+        //2 paametros sql e callback do retrono
+        connection.query("select * from noticias",function(error,result){
+            console.log(error);
+            res.render("noticias/noticias",{noticias:result});
+        });
+
+         var mysql = require('mysql');
 
         var connection = mysql.createConnection({
             host : 'localhost',

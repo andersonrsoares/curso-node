@@ -7,6 +7,7 @@ app.set('views','./app/views');
 consign()
     .include('app/routes')
     .then('config/dbConnection.js')//apenas um arquivo exige extencao
+    .then('app/models')
     .into(app);
 
 module.exports = app;
