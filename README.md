@@ -24,3 +24,4 @@ npm install express --save(monulo para http) <br/>
 npm install ejs --save(modulo para gerar paginas html)<br/> 
 npm install mysql --save(modulo banco de dados mysql)<br/> 
 npm install consign --save(modulo para carregamento automatico de modulos )<br/> 
+npm install body-parser --save(modulo para reornar o corpo da de uma request usando express)<br/> 
