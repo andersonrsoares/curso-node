@@ -11,6 +11,7 @@ consign()
     .include('app/routes')
     .then('config/dbConnection.js')//apenas um arquivo exige extencao
     .then('app/models')
+    .then('app/controllers')
     .into(app);
 
 module.exports = app;

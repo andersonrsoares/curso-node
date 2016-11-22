@@ -1,14 +1,16 @@
 //var dbConnection = require('../../config/dbConnection');
 
 module.exports = function(application){
+
     application.get('/noticias',function(req,res){
-         var connection = application.config.dbConnection();  
-         var noticiasDAO = new application.app.models.NoticiasDAO(connection);
+        application.app.controllers.noticias.noticias(application,req,res);
+        //  var connection = application.config.dbConnection();  
+        //  var noticiasDAO = new application.app.models.NoticiasDAO(connection);
         
-         noticiasDAO.getNoticias(function(error,result){
-            console.log(error);
-            res.render("noticias/noticias",{noticias:result});
-        });
+        //  noticiasDAO.getNoticias(function(error,result){
+        //     console.log(error);
+        //     res.render("noticias/noticias",{noticias:result});
+        // });
          
     });
 };
