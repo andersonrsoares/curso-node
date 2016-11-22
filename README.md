@@ -38,7 +38,14 @@ $ sudo chmod 777(permissao geral para pastas)<br/>
 pwd|pbcopy(pega diretorio atual no terminal)<br/>
 
 export PATH=<mongodb-install-directory>/bin:$PATH(caminho do mongo)<br/>
-se nao funcionar execute o programa diretamente ./mongo<br/>
+
+Comandos para executar o mongo
+
+mongod(servico do mongo) --rest para subir aplicao de gereciamento pelo navegador<br/> 
+
+mongo(aplciacao para manutencao das tabelas e banco de dados)<br/> 
+
+se nao funcionar execute diretamente com ./mongo<br/>
 
 
 show dbs(motra as databases)<br/>
