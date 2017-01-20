@@ -66,7 +66,7 @@ app.get('/api',function(req,res){
 				if(err){
 					res.json(err);	
 				}else{
-					res.json(results);	
+					res.status(200).json(results);	
 				}
 				mongoclient.close();
 			});
@@ -97,6 +97,26 @@ app.put('/api/:id',function(req,res){
 			collection.update(
 					{ _id:objectId(req.params.id) },
 					{ $set : {titulo:req.body.titulo} },
+					{},
+					function(err,records){
+						if(err){
+							res.json(err);	
+						}else{
+							res.json(records);	
+						}
+						mongoclient.close();
+					}
+				);
+		});
+	});
+});
+
+
+app.delete('/api/:id',function(req,res){
+	connMongoDB().open(function(err,mongoclient){
+		mongoclient.collection('postagens',function(err,collection){
+			collection.remove(
+					{ _id:objectId(req.params.id) },
 					{},
 					function(err,records){
 						if(err){
