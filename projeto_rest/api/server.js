@@ -2,6 +2,7 @@
 var express = require('express');
 var mongodb = require('mongodb');
 var bodyParser = require('body-parser');
+var multiparty = require('connect-multiparty');
 var objectId = require('mongodb').ObjectId;
 
 var app = express();
@@ -10,6 +11,7 @@ var app = express();
 /* configurar o middleware body-parser */
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+app.use(multiparty());
 
 var port = 3000;
 
@@ -75,7 +77,11 @@ app.get('/api',function(req,res){
 });
 
 app.post('/api',function(req,res){
+	//header e dominio o asterisco é para todos
+	res.setHeader("Access-Control-Allow-Origin","*");
+
 	var dados = req.body;
+	console.log(dados);
 	//res.send(dados);
 	connMongoDB().open(function(err,mongoclient){
 		mongoclient.collection('postagens',function(err,collection){
