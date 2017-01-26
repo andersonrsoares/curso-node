@@ -4,7 +4,7 @@ var mongodb = require('mongodb');
 var bodyParser = require('body-parser');
 var multiparty = require('connect-multiparty');
 var objectId = require('mongodb').ObjectId;
-
+var fs = require('fs');
 var app = express();
 
 
@@ -80,8 +80,31 @@ app.post('/api',function(req,res){
 	//header e dominio o asterisco é para todos
 	res.setHeader("Access-Control-Allow-Origin","*");
 
-	var dados = req.body;
+	var d = req.body;
+	
+	console.log(req.files);
+
+	var date = new Date();
+	var time_stamp = date.getTime();
+
+	var url_imagem = time_stamp + '_' + req.files.arquivo.originalFilename;
+
+	var path_origem = req.files.arquivo.path;
+	var path_destino = './upload/' + url_imagem
+
+	fs.rename(path_origem,path_destino, function (err) {
+		if(err){
+			res.status(500).json({error:err});
+			return;
+		}
+	});
+
+	var dados = {
+		url_imagem: url_imagem,
+		titulo: d.titulo
+	}
 	console.log(dados);
+
 	//res.send(dados);
 	connMongoDB().open(function(err,mongoclient){
 		mongoclient.collection('postagens',function(err,collection){
