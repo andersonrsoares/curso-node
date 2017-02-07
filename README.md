@@ -29,6 +29,8 @@ express)<br/>
 npm install connect-multiparty --save(modulo para requesicoes em multpary)<br/>
 npm install mongodb --save(mmondodb driver)<br/>
 
+npm install socket.io--save(socket.io)<br/>
+
 
 MongoDb<br/>
 https://docs.mongodb.com/v3.2/tutorial/install-mongodb-on-os-x/<br/>

@@ -42,8 +42,8 @@
                                         <div class="alert alert-danger">
                                             <strong>Atencao! </strong>
                                                 <ul>
-                                                    <%for(var i = 0;validacao.length;i++) {%>
-                                                        <li>  <%=validacao[i].param%></li>
+                                                    <%for(var i = 0;i<validacao.length;i++) {%>
+                                                        <li>  <%=validacao[i].msg%></li>
                                                     <%}%>
                                                 </ul>
                                                 

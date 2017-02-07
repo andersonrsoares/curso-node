@@ -71,8 +71,8 @@
 		<div class="container">
             <div class="row conversa" id="conversa">
 				<div class="col-md-1"></div>
-				<div class="col-md-10">
-					<div class="dialogo">
+				<div class="col-md-10" id="dialogos">
+					<!-- <div class="dialogo">
 						<h4>Jorge</h4>
 						<p>Fala José, blz cara?</p>
 					</div>
@@ -95,7 +95,7 @@
 					<div class="dialogo">
 						<h4>Jorge</h4>
 						<p>Show de bola, comunicação bi-direcional em páginas ou sistemas web é muito bacana mesmo</p>
-					</div>
+					</div> -->
 				</div>
 				<div class="col-md-1"></div>
                 
@@ -127,21 +127,44 @@
 		<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
 			<div class="container">
 				<div class="panel-body campo-mensagem">
-					<form>
-						<div class="col-md-12">
-							<div class="input-group">
-								<input type="text" class="form-control" placeholder="Mensagem">
-								<span class="input-group-btn">
-									<button class="btn btn-default" type="button">></button>
-								</span>
-							</div>
+					<div class="col-md-12">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Mensagem" id="mensagem">
+							<input type="hidden" class="form-control" value="<%=form.apelido%>" id="apelido">
+							<span class="input-group-btn">
+								<button class="btn btn-default" type="button" id="enviar_mensagem"></button>
+							</span>
 						</div>
-					</form>
+					</div>
 				</div>
 			</div>
 		</nav>		
 		
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		<script src="/socket.io/socket.io.js"></script>
+			<script>
+			  var socket = io('http://localhost:3000');
+
+			  	$("#enviar_mensagem").click(function() {
+			  		socket.emit(
+			  			'msgParaServidor',
+			  			{apelido: $("#apelido").val() ,mensagem: $("#mensagem").val()}		
+			  			);
+			  	});
+
+			  socket.on('msgParaCliente', function (data) {
+			    console.log(data);
+			    dialogos
+			    var html = '';
+			    html += '<div class="dialogo">';
+			    html += ' <h4>' + data.apelido + ' </h4>'
+			    html += ' <p>' + data.mensagem + ' </p>'
+			    html += '</div>'
+			   // alert(datdiva.apelido + " " + " entrou ");
+			    //socket.emit('my other event', { my: 'data' });
+			    $('#dialogos').append(html);
+			  });
+			</script>
 		
 	</body>
 </html>

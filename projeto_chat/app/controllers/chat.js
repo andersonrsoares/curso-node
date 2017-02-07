@@ -8,13 +8,17 @@ module.exports.iniciaChat = function(application,req,res){
 
 
 	var erros = req.validationErrors();
-	console.log(erros);
-
+	var e =	 {validacao : erros};
+	//console.log(e);
 	if(erros){	
-		res.render("index",{validacao:erros});
+
+		res.render("index",e);
 		return;
 	}
-	
-	res.render("chat");
+	//get do io passo como set no app.js
+	application.get('io').emit("msgParaCliente",
+		{apelido: form.apelido, mensagem: "entrou"}
+	);
+	res.render("chat",{form:form});
 
 }
